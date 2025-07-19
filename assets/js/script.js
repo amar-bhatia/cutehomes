@@ -79,6 +79,7 @@ $(document).ready(function() {
     $.getJSON('/assets/json/items.json', function(data) {
         giftData = data;
         console.log(data);
+        renderGiftsGrid();
     });
 
     let cart = [];
