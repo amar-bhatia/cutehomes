@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Educational Building Blocks",
+    "category": "educational",
+    "price": 300,
+    "originalPrice": 300,
+    "image": "https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "High-quality building blocks that enhance creativity and problem-solving skills.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  },
+  {
+    "id": 2,
+    "name": "Super Hero Action Figure",
+    "category": "action",
+    "price": 24.99,
+    "originalPrice": null,
+    "image": "https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "Detailed action figure with multiple articulation points and accessories.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  },
+  {
+    "id": 3,
+    "name": "Art & Craft Set",
+    "category": "creative",
+    "price": 19.99,
+    "originalPrice": 25.99,
+    "image": "https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "Complete art set with colors, brushes, and canvas for young artists.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  },
+  {
+    "id": 4,
+    "name": "STEM Learning Kit",
+    "category": "educational",
+    "price": 49.99,
+    "originalPrice": 59.99,
+    "image": "https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "Interactive STEM kit with experiments and learning materials.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  },
+  {
+    "id": 5,
+    "name": "Remote Control Car",
+    "category": "action",
+    "price": 34.99,
+    "originalPrice": null,
+    "image": "https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "High-speed remote control car with LED lights and sound effects.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  },
+  {
+    "id": 6,
+    "name": "Musical Instrument Set",
+    "category": "creative",
+    "price": 27.99,
+    "originalPrice": 35.99,
+    "image": "https://images.pexels.com/photos/4472142/pexels-photo-4472142.jpeg?auto=compress&cs=tinysrgb&w=400",
+    "description": "Complete musical set with various instruments for music exploration.",
+    "detail_link": "https://www.facebook.com/share/162yRD4rWW"
+  }
+]
