@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    // Sample product data
-    const toysData = [
+
+    const giftData = [
         {
             id: 1,
             name: "Educational Building Blocks",
@@ -75,57 +75,9 @@ $(document).ready(function() {
         }
     ];
 
-    const giftsData = [
-        {
-            id: 7,
-            name: "Personalized Photo Frame",
-            category: "gifts",
-            price: 15.99,
-            originalPrice: null,
-            image: "https://images.pexels.com/photos/1303088/pexels-photo-1303088.jpeg?auto=compress&cs=tinysrgb&w=400",
-            rating: 4.7,
-            badge: "Custom",
-            description: "Beautiful wooden photo frame with customization options."
-        },
-        {
-            id: 8,
-            name: "Decorative Night Light",
-            category: "gifts",
-            price: 22.99,
-            originalPrice: 28.99,
-            image: "https://images.pexels.com/photos/1123982/pexels-photo-1123982.jpeg?auto=compress&cs=tinysrgb&w=400",
-            rating: 4.6,
-            badge: "Popular",
-            description: "LED night light with multiple color options and timer function."
-        },
-        {
-            id: 9,
-            name: "Gift Card Bundle",
-            category: "gifts",
-            price: 50.00,
-            originalPrice: null,
-            image: "https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?auto=compress&cs=tinysrgb&w=400",
-            rating: 5.0,
-            badge: "Gift",
-            description: "Flexible gift card bundle perfect for any occasion."
-        },
-        {
-            id: 10,
-            name: "Aromatherapy Diffuser",
-            category: "gifts",
-            price: 32.99,
-            originalPrice: 39.99,
-            image: "https://images.pexels.com/photos/4207890/pexels-photo-4207890.jpeg?auto=compress&cs=tinysrgb&w=400",
-            rating: 4.8,
-            badge: "Wellness",
-            description: "Ultrasonic aromatherapy diffuser with essential oils included."
-        }
-    ];
-
     let cart = [];
     let currentFilter = 'all';
 
-    // Initialize the page
     init();
 
     function init() {
@@ -135,28 +87,17 @@ $(document).ready(function() {
     }
 
     function renderProducts() {
-        renderToysGrid();
         renderGiftsGrid();
     }
 
-    function renderToysGrid() {
-        const filteredToys = currentFilter === 'all' ? toysData : toysData.filter(toy => toy.category === currentFilter);
-        const toysGrid = $('#toysGrid');
-        toysGrid.empty();
-
-        filteredToys.forEach(toy => {
-            const productCard = createProductCard(toy);
-            toysGrid.append(productCard);
-        });
-    }
-
     function renderGiftsGrid() {
-        const giftsGrid = $('#giftsGrid');
-        giftsGrid.empty();
+        const filteredGifts = currentFilter === 'all' ? giftData : giftData.filter(article => article.category === currentFilter);
+        const giftGrid = $('#giftGrid');
+        giftGrid.empty();
 
-        giftsData.forEach(gift => {
-            const productCard = createProductCard(gift);
-            giftsGrid.append(productCard);
+        filteredGifts.forEach(article => {
+            const productCard = createProductCard(article);
+            giftGrid.append(productCard);
         });
     }
 
@@ -169,7 +110,6 @@ $(document).ready(function() {
                 <div class="product-card">
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}">
-                        ${product.badge ? '<div class="product-badge">'+product.badge+'</div>': ''}
                         <div class="product-actions">
                             <button class="action-btn" onclick="quickView(${product.id})" title="Quick View">
                                 <i class="fas fa-eye"></i>
@@ -182,10 +122,6 @@ $(document).ready(function() {
                     <div class="product-info">
                         <div class="product-category">${product.category}</div>
                         <h4 class="product-title">${product.name}</h4>
-                        <div class="product-rating">
-                            ${generateStars(product.rating)}
-                            <span class="ms-2">(${product.rating})</span>
-                        </div>
                         <div class="product-price">
                             <div>
                                 <span class="price"><i class="fas fa-inr me-1"></i>${product.price}</span>
@@ -201,43 +137,19 @@ $(document).ready(function() {
         `;
     }
 
-    function generateStars(rating) {
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-        let starsHTML = '';
-
-        for (let i = 0; i < fullStars; i++) {
-            starsHTML += '<i class="fas fa-star star"></i>';
-        }
-
-        if (hasHalfStar) {
-            starsHTML += '<i class="fas fa-star-half-alt star"></i>';
-        }
-
-        const emptyStars = 5 - Math.ceil(rating);
-        for (let i = 0; i < emptyStars; i++) {
-            starsHTML += '<i class="far fa-star star"></i>';
-        }
-
-        return starsHTML;
-    }
-
     function initializeEventListeners() {
-        // Filter buttons
         $('.filter-btn').click(function() {
             $('.filter-btn').removeClass('active');
             $(this).addClass('active');
             currentFilter = $(this).data('filter');
-            renderToysGrid();
+            renderGiftsGrid();
         });
 
-        // Search functionality
         $('#searchInput').on('input', function() {
             const searchTerm = $(this).val().toLowerCase();
             filterProductsBySearch(searchTerm);
         });
 
-        // Smooth scrolling for navigation links
         $('a[href^="#"]').click(function(e) {
             e.preventDefault();
             const target = $($(this).attr('href'));
@@ -248,14 +160,9 @@ $(document).ready(function() {
             }
         });
 
-        // Category card clicks
         $('.category-card').click(function() {
             const category = $(this).find('h3').text().toLowerCase();
-            if (category.includes('toy')) {
-                $('html, body').animate({
-                    scrollTop: $('#toys').offset().top - 80
-                }, 1000);
-            } else if (category.includes('gift')) {
+            if (category.includes('gifts')) {
                 $('html, body').animate({
                     scrollTop: $('#gifts').offset().top - 80
                 }, 1000);
@@ -267,7 +174,7 @@ $(document).ready(function() {
         $('.product-item').each(function() {
             const productName = $(this).find('.product-title').text().toLowerCase();
             const productCategory = $(this).find('.product-category').text().toLowerCase();
-            
+
             if (productName.includes(searchTerm) || productCategory.includes(searchTerm)) {
                 $(this).show();
             } else {
@@ -276,9 +183,8 @@ $(document).ready(function() {
         });
     }
 
-    // Global functions for product interactions
     window.addToCart = function(productId) {
-        const product = [...toysData, ...giftsData].find(p => p.id === productId);
+        const product = giftData.find(p => p.id === productId);
         const existingItem = cart.find(item => item.id === productId);
 
         if (existingItem) {
@@ -310,9 +216,9 @@ $(document).ready(function() {
     };
 
     window.quickView = function(productId) {
-        const product = [...toysData, ...giftsData].find(p => p.id === productId);
+        const product = giftData.find(p => p.id === productId);
         const modalBody = $('#productModalBody');
-        
+
         modalBody.html(`
             <div class="row">
                 <div class="col-md-6">
@@ -320,10 +226,6 @@ $(document).ready(function() {
                 </div>
                 <div class="col-md-6">
                     <h4>${product.name}</h4>
-                    <div class="mb-3">
-                        ${generateStars(product.rating)}
-                        <span class="ms-2">(${product.rating})</span>
-                    </div>
                     <p class="text-muted">${product.description}</p>
                     <div class="mb-3">
                         <span class="h4 text-danger"><i class="fas fa-inr me-1"></i>${product.price}</span>
@@ -338,7 +240,7 @@ $(document).ready(function() {
                 </div>
             </div>
         `);
-        
+
         $('#productModalTitle').text(product.name);
         $('#productModal').modal('show');
     };
@@ -408,7 +310,6 @@ $(document).ready(function() {
         }, 3000);
     }
 
-    // Navbar scroll effect
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.header-section').addClass('scrolled');
@@ -417,7 +318,6 @@ $(document).ready(function() {
         }
     });
 
-    // Add scrolled class styles
     $('<style>')
         .prop('type', 'text/css')
         .html(`
