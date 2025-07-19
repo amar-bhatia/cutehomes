@@ -76,7 +76,7 @@ $(document).ready(function() {
     // ];
 
     let giftData = [];
-    $.getJSON('/assets/items.json', function(data) {
+    $.getJSON('/assets/json/items.json', function(data) {
         giftData = data;
         console.log(data);
     });
